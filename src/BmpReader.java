@@ -8,21 +8,22 @@ import java.io.IOException;
 public class BmpReader
 {
     /**
-     * Created on 2010-7-13 
+     * Created on 2023-6-17
      * <p>Discription:[bmpTojpg]</p>
      * @param file
      * @param dstFile
      */
-    public static void bmpTojpg(String file,String dstFile)
+    public static void bmpToJpg(String file, String dstFile)
     {
         try
         {
             FileInputStream in = new FileInputStream(file);
             Image TheImage = read(in);
-            int wideth = TheImage.getWidth(null);
+            assert TheImage != null;
+            int width = TheImage.getWidth(null);
             int height = TheImage.getHeight(null);
-            BufferedImage tag = new BufferedImage(wideth, height, BufferedImage.TYPE_INT_RGB);
-            tag.getGraphics().drawImage(TheImage, 0, 0, wideth, height, null);
+            BufferedImage tag = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            tag.getGraphics().drawImage(TheImage, 0, 0, width, height, null);
             FileOutputStream out = new FileOutputStream(dstFile);
             ImageIO.write(tag, "jpg", out);
             out.close();

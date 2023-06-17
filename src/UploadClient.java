@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -7,15 +8,18 @@ import java.net.InetAddress;
 
 public class UploadClient {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, AWTException {
         System.out.println("客户端运行...");
+
 
         //bmp的路径
         String bmpFile = "TestDir/bbb.bmp";
+        //捕获桌面图象
+        CatchScreen.screen(bmpFile);
         //发送jpg的路径
         String senFile = "TestDir/senDir/bbb.jpg";
         //将bmp转换为jpg
-        BmpReader.bmpTojpg(bmpFile,senFile);
+        BmpReader.bmpToJpg(bmpFile,senFile);
 
         try (
                 //创建DatagramSocket对象，由系统分配可以使用的端口
